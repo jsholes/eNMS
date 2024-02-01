@@ -1,0 +1,12 @@
+#map {
+  z-index: 2;
+}
+
+.btn-search {
+  padding: 10 10;
+  width: 100px;
+}
+
+.scene-tooltip {
+  transform: translate(-50%, -25px) !important;
+}

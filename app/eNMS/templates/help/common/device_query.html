@@ -1,0 +1,61 @@
+<div class="modal-body">
+  <div>
+    <p>
+      The <b>device_query</b> parameter is a python expression that evaluates to an
+      iterable containing either Device names or IP addresses. This allows dynamic
+      section of target devices based on a previous service's result or from variables
+      set by a previous service. The Device names or IP Addresses must correspond to
+      existing inventory devices. The Query Property field specifies how to match values
+      against inventory.
+    </p>
+    <p>
+      Important note: The set of targets for the service is the union or devices from
+      Devices, Pools, and the <b>device_query</b>. If the user selects devices, pools,
+      and a device_query, the service will run on the combination of all devices from
+      the selected devices, pools and device_query.
+    </p>
+  </div>
+  <div>
+    <h2>Example 1</h2>
+    <h2>Retrieve device list from the result of a previous service</h2>
+    <div>
+      Device Query:
+      <textarea class="help-snippet" style="height: fit-content;">
+get_result('Previous_Service_Name')['result']</textarea
+      >
+    </div>
+    <p style="margin-top: 10px;">Notes:</p>
+    Specify that the previous service result contained Device Names or IP Addresses in
+    the Query Property Type field
+  </div>
+  <div>
+    <h2>Example 2</h2>
+    <h2>
+      Use the parent workflow's devices as the target device list for this service
+    </h2>
+    <div>
+      Device Query:
+      <textarea class="help-snippet" style="height: fit-content;">
+[x.name for x in devices]</textarea
+      >
+    </div>
+    <p style="margin-top: 10px;">Notes:</p>
+    Select Name in the Query Property Type field
+  </div>
+  <div>
+    <h2>Example 3</h2>
+    <h2>
+      Retrieve the target device list from a variable set by a previous service using
+      set_var('variable_name')
+    </h2>
+    <div>
+      Device Query:
+      <textarea class="help-snippet" style="height: fit-content;">
+get_var('variable_name')</textarea
+      >
+    </div>
+    <p style="margin-top: 10px;">Notes:</p>
+    Select whether the previous service result contained Device Names or IP Addresses in
+    the Query Property Type field
+  </div>
+</div>

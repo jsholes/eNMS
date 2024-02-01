@@ -1,0 +1,49 @@
+# byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# database & logs
+*.db
+*.db-journal
+*.log
+*.log.*
+
+# created by eNMS
+logs
+network_data
+files/services/*
+!files/services/.gitkeep
+*.tgz
+
+# venv
+env
+venv
+
+# other
+.DS_Store
+
+# ansible retry files
+*.retry
+
+# MkDocs
+docs/build
+
+# javascript
+package-lock.json
+node_modules/
+
+# AP Scheduler
+*.sqlite
+
+# VS Code
+*.code-workspace
+.vscode/
+
+# Pycharm files
+.idea/
+
+# Apple files
+._*
+
+# SSH Handoff
+rsa.key

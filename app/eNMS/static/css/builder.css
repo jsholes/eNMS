@@ -1,0 +1,14 @@
+#builder {
+  height: calc(100vh - 80px);
+}
+
+/* Prevent Chrome from highlight the builder div with an outline */
+*:focus {
+  outline: none;
+}
+
+/* Color and size of optgroup in the drop-down list of top-level network / worklows */
+li.dropdown-header {
+  color: #050404;
+  font-weight: 550;
+}

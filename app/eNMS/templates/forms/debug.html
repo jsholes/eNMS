@@ -1,0 +1,30 @@
+<form
+  id="debug-form"
+  class="form-horizontal form-label-left"
+  method="post"
+  autocomplete="off"
+>
+  {{ form.hidden_tag() }}
+  <div class="modal-body">
+    <center>{{ form.snippets(id="debug-snippets") }}</center>
+    <br /><br />
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <center>{{ form.code.label() }}</center>
+      {{ form.code() }}
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <center>{{ form.output.label() }}</center>
+      {{ form.output(id="debug-output", spellcheck="false", style="width: 100%;") }}
+    </div>
+    <center>
+      <button
+        style="margin-top: 20px;"
+        type="button"
+        class="btn btn-primary"
+        onclick="eNMS.administration.runDebugCode()"
+      >
+        Run Code
+      </button>
+    </center>
+  </div>
+</form>

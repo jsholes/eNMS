@@ -1,0 +1,1636 @@
+{
+  "custom": {
+    "device": {
+      "property1": {
+        "pretty_name": "Property 1",
+        "type": "str",
+        "default": "10.145.14.1",
+        "is_address": true
+      },
+      "property2": {
+        "pretty_name": "Property 2",
+        "default": "CP",
+        "type": "str"
+      },
+      "reachable": {
+        "pretty_name": "Is Reachable",
+        "default": true,
+        "type": "bool"
+      },
+      "down": {
+        "pretty_name": "Is Down",
+        "default": false,
+        "type": "bool"
+      },
+      "property3": {
+        "pretty_name": "Private property",
+        "default": "password",
+        "type": "str",
+        "private": true
+      },
+      "custom_select": {
+        "pretty_name": "Custom Select",
+        "choices": [
+          ["a", "A"],
+          ["b", "B"]
+        ],
+        "default": "b",
+        "type": "select"
+      },
+      "custom_multiselect": {
+        "pretty_name": "Custom Multiselect",
+        "choices": [
+          ["a", "A"],
+          ["b", "B"],
+          ["c", "C"]
+        ],
+        "default": ["a", "c"],
+        "type": "multiselect"
+      },
+      "custom_json": {
+        "pretty_name": "Custom Json",
+        "default": { "a": "c", "b": [1, 2, "3"] },
+        "merge_update": true,
+        "type": "json"
+      }
+    },
+    "file": {
+      "custom_property": {
+        "pretty_name": "Custom Property",
+        "type": "str",
+        "default": "Custom"
+      }
+    },
+    "group": {
+      "custom_property": {
+        "pretty_name": "Custom Property",
+        "default": "CP",
+        "type": "str"
+      }
+    },
+    "link": {
+      "custom_property": {
+        "pretty_name": "Custom Property",
+        "type": "str",
+        "default": "CP"
+      }
+    },
+    "pool": {
+      "property1": {
+        "pretty_name": "Custom Property",
+        "type": "str",
+        "default": "CP"
+      }
+    },
+    "service": {
+      "definition": {
+        "pretty_name": "Definition",
+        "default": "Definition"
+      },
+      "reserved": {
+        "pretty_name": "Reserved",
+        "type": "bool",
+        "default": false
+      },
+      "impacting": {
+        "pretty_name": "Impacting",
+        "type": "bool",
+        "default": true,
+        "help": "custom/impacting"
+      },
+      "completion_time": {
+        "pretty_name": "Completion time",
+        "type": "integer",
+        "default": 1
+      },
+      "default_uuid": {
+        "pretty_name": "Default UUID",
+        "type": "str",
+        "default": "",
+        "default_function": "generate_uuid",
+        "dont_duplicate": true,
+        "render_kw": { "readonly": true }
+      },
+      "mandatory_parameter": {
+        "pretty_name": "Mandatory Parameter",
+        "type": "str",
+        "default": "Default Value",
+        "mandatory": true
+      }
+    },
+    "workflow": {
+      "custom_property": {
+        "pretty_name": "Custom Property",
+        "type": "str",
+        "default": "Default Value"
+      }
+    }
+  },
+  "dashboard": {
+    "device": [
+      "model",
+      "vendor",
+      "subtype",
+      "icon",
+      "operating_system",
+      "os_version",
+      "port",
+      "property1",
+      "property2"
+    ],
+    "link": ["model", "vendor", "subtype", "location"],
+    "service": [
+      "vendor",
+      "operating_system",
+      "creator",
+      "send_notification",
+      "send_notification_method",
+      "multiprocessing",
+      "max_processes",
+      "number_of_retries",
+      "time_between_retries"
+    ],
+    "workflow": [
+      "vendor",
+      "operating_system",
+      "creator",
+      "send_notification",
+      "send_notification_method",
+      "multiprocessing",
+      "max_processes",
+      "number_of_retries",
+      "time_between_retries"
+    ],
+    "task": ["status", "frequency", "frequency_unit", "crontab_expression"],
+    "user": ["is_admin", "groups"]
+  },
+  "serialized": {
+    "get": {
+      "device": {
+        "exclude": ["pools", "target_services", "tasks"]
+      },
+      "group": {
+        "include": [
+          "users",
+          "rbac_pool_rbac_read",
+          "rbac_pool_rbac_configuration",
+          "rbac_pool_rbac_edit",
+          "rbac_pool_rbac_connect",
+          "rbac_pool_rbac_target"
+        ]
+      },
+      "link": {
+        "exclude": ["pools"]
+      },
+      "network": {
+        "exclude": ["labels", "links", "nodes", "positions"]
+      },
+      "pool": {
+        "exclude": [
+          "credential_devices",
+          "devices",
+          "links",
+          "tasks",
+          "target_services"
+        ]
+      },
+      "workflow": {
+        "exclude": ["services", "edges"]
+      },
+      "user": {
+        "include": ["groups"]
+      },
+      "service": {
+        "exclude": ["runs"]
+      }
+    }
+  },
+  "tables": {
+    "device": [
+      {
+        "data": "name",
+        "title": "Name",
+        "search": "text"
+      },
+      {
+        "data": "description",
+        "title": "Description",
+        "search": "text",
+        "visible": false,
+        "orderable": false
+      },
+      {
+        "data": "creator",
+        "title": "Creator",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "last_modified",
+        "title": "Last Modified",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "last_modified_by",
+        "title": "Last Modified By",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "subtype",
+        "title": "Subtype",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "model",
+        "title": "Model",
+        "search": "text"
+      },
+      {
+        "data": "location",
+        "title": "Location",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "vendor",
+        "title": "Vendor",
+        "search": "text"
+      },
+      {
+        "data": "operating_system",
+        "title": "Operating System",
+        "search": "text"
+      },
+      {
+        "data": "os_version",
+        "title": "OS Version",
+        "search": "text"
+      },
+      {
+        "data": "ip_address",
+        "title": "IP Address",
+        "search": "text"
+      },
+      {
+        "data": "port",
+        "title": "Port",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "property1",
+        "title": "Property 1",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "services",
+        "title": "Target Services",
+        "width": "80px",
+        "visible": false,
+        "html": true
+      },
+      {
+        "data": "tasks",
+        "title": "Tasks",
+        "width": "80px",
+        "visible": false,
+        "html": true
+      },
+      {
+        "data": "pools",
+        "title": "Pools",
+        "width": "80px",
+        "visible": false,
+        "html": true
+      },
+      {
+        "data": "buttons",
+        "width": "270px",
+        "orderable": false,
+        "export": false,
+        "html": true
+      }
+    ],
+    "configuration": [
+      {
+        "data": "name",
+        "title": "Name",
+        "search": "text"
+      },
+      {
+        "data": "description",
+        "title": "Description",
+        "search": "text",
+        "visible": false,
+        "orderable": false
+      },
+      {
+        "data": "subtype",
+        "title": "Subtype",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "model",
+        "title": "Model",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "location",
+        "title": "Location",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "vendor",
+        "title": "Vendor",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "operating_system",
+        "title": "Operating System",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "os_version",
+        "title": "OS Version",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "ip_address",
+        "title": "IP Address",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "port",
+        "title": "Port",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "buttons",
+        "width": "130px",
+        "orderable": false,
+        "export": false,
+        "html": true
+      }
+    ],
+    "full_result": [
+      {
+        "data": "runtime",
+        "title": "Runtime",
+        "search": "text"
+      },
+      {
+        "data": "labels",
+        "title": "Labels",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "duration",
+        "title": "Duration",
+        "search": "text"
+      },
+      {
+        "data": "user",
+        "title": "User",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "parent_device_name",
+        "title": "Parent Device",
+        "search": "text",
+        "orderable": false,
+        "visible": false
+      },
+      {
+        "data": "device_name",
+        "title": "Device",
+        "search": "text",
+        "orderable": false
+      },
+      {
+        "data": "service_name",
+        "title": "Service",
+        "search": "text",
+        "orderable": false
+      },
+      {
+        "data": "success",
+        "title": "Status",
+        "search": "bool",
+        "search_labels": { "true": "Success", "false": "Failure" },
+        "width": "80px",
+        "orderable": false,
+        "html": true
+      },
+      {
+        "data": "buttons",
+        "orderable": false,
+        "export": false
+      },
+      {
+        "data": "v1",
+        "title": "V1",
+        "orderable": false,
+        "html": true
+      },
+      {
+        "data": "v2",
+        "title": "V2",
+        "orderable": false,
+        "html": true
+      }
+    ],
+    "link": [
+      {
+        "data": "name",
+        "title": "Name",
+        "search": "text"
+      },
+      {
+        "data": "description",
+        "title": "Description",
+        "search": "text",
+        "visible": false,
+        "orderable": false
+      },
+      {
+        "data": "creator",
+        "title": "Creator",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "last_modified",
+        "title": "Last Modified",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "last_modified_by",
+        "title": "Last Modified By",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "subtype",
+        "title": "Subtype",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "model",
+        "title": "Model",
+        "search": "text"
+      },
+      {
+        "data": "location",
+        "title": "Location",
+        "search": "text"
+      },
+      {
+        "data": "vendor",
+        "title": "Vendor",
+        "search": "text"
+      },
+      {
+        "data": "source_name",
+        "title": "Source",
+        "search": "text",
+        "orderable": false
+      },
+      {
+        "data": "destination_name",
+        "title": "Destination",
+        "search": "text",
+        "orderable": false
+      },
+      {
+        "data": "property1",
+        "title": "Property 1",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "pools",
+        "title": "Pools",
+        "width": "80px",
+        "visible": false,
+        "html": true
+      },
+      {
+        "data": "buttons",
+        "width": "130px",
+        "orderable": false,
+        "export": false,
+        "html": true
+      }
+    ],
+    "pool": [
+      {
+        "data": "name",
+        "title": "Name",
+        "search": "text"
+      },
+      {
+        "data": "creator",
+        "title": "Creator",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "last_modified",
+        "title": "Last Modified",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "last_modified_by",
+        "title": "Last Modified By",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "description",
+        "title": "Description",
+        "search": "text",
+        "orderable": false,
+        "visible": false
+      },
+      {
+        "data": "manually_defined",
+        "title": "Manually defined",
+        "orderable": false,
+        "search": "bool",
+        "width": "100px"
+      },
+      {
+        "data": "admin_only",
+        "title": "Admin Only",
+        "search": "bool",
+        "visible": false
+      },
+      {
+        "data": "devices",
+        "title": "Devices",
+        "width": "80px",
+        "export": false,
+        "html": true
+      },
+      {
+        "data": "links",
+        "title": "Links",
+        "width": "80px",
+        "export": false,
+        "html": true
+      },
+      {
+        "data": "objectNumber",
+        "title": "Object Count",
+        "width": "170px",
+        "orderable": false,
+        "export": false
+      },
+      {
+        "data": "buttons",
+        "width": "200px",
+        "orderable": false,
+        "export": false,
+        "html": true
+      }
+    ],
+    "service": [
+      {
+        "data": "name",
+        "width": "600px",
+        "title": "Name",
+        "search": "text",
+        "className": "dt-body-left",
+        "html": true
+      },
+      {
+        "data": "type",
+        "title": "Type",
+        "search": "text"
+      },
+      {
+        "data": "shared",
+        "title": "Shared",
+        "search": "bool",
+        "visible": false
+      },
+      {
+        "data": "vendor",
+        "title": "Vendor",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "operating_system",
+        "title": "Operating System",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "creator",
+        "title": "Creator",
+        "search": "text"
+      },
+      {
+        "data": "last_modified",
+        "title": "Last Modified",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "last_modified_by",
+        "title": "Last Modified By",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "last_run",
+        "title": "Last Run",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "status",
+        "title": "Status",
+        "search": "text",
+        "width": "100px"
+      },
+      {
+        "data": "send_notification",
+        "title": "Notification",
+        "search": "bool",
+        "width": "100px",
+        "visible": false
+      },
+      {
+        "data": "admin_only",
+        "title": "Admin Only",
+        "search": "bool",
+        "visible": false
+      },
+      {
+        "data": "devices",
+        "title": "Target Devices",
+        "width": "100px",
+        "visible": false,
+        "html": true
+      },
+      {
+        "data": "pools",
+        "title": "Target Pools",
+        "width": "100px",
+        "visible": false,
+        "html": true
+      },
+      {
+        "data": "runs",
+        "title": "Runs",
+        "width": "100px",
+        "visible": false,
+        "html": true
+      },
+      {
+        "data": "buttons",
+        "width": "310px",
+        "orderable": false,
+        "export": false,
+        "html": true
+      }
+    ],
+    "network": [
+      {
+        "data": "name",
+        "width": "400px",
+        "title": "Name",
+        "search": "text",
+        "className": "dt-body-left",
+        "html": true
+      },
+      {
+        "data": "description",
+        "title": "Description",
+        "search": "text"
+      },
+      {
+        "data": "creator",
+        "title": "Creator",
+        "search": "text"
+      },
+      {
+        "data": "location",
+        "title": "Location",
+        "search": "text"
+      },
+      {
+        "data": "links",
+        "title": "Links",
+        "width": "100px",
+        "html": true
+      },
+      {
+        "data": "buttons",
+        "width": "120px",
+        "orderable": false,
+        "export": false,
+        "html": true
+      }
+    ],
+    "run": [
+      {
+        "data": "name",
+        "title": "Name",
+        "search": "text",
+        "width": "250px",
+        "html": true
+      },
+      {
+        "data": "runtime",
+        "title": "Runtime",
+        "search": "text",
+        "width": "200px",
+        "visible": false
+      },
+      {
+        "data": "labels",
+        "title": "Labels",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "duration",
+        "title": "Duration",
+        "search": "text",
+        "width": "100px"
+      },
+      {
+        "data": "service_name",
+        "title": "Service",
+        "search": "text",
+        "orderable": false,
+        "width": "200px"
+      },
+      {
+        "data": "task_name",
+        "title": "Task",
+        "search": "text",
+        "orderable": false,
+        "visible": false
+      },
+      {
+        "data": "server_link",
+        "title": "Server",
+        "search": "text",
+        "visible": false,
+        "width": "120px",
+        "html": true
+      },
+      {
+        "data": "server_version",
+        "title": "Version",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "server_commit_sha",
+        "title": "Commit",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "worker_link",
+        "title": "Worker",
+        "search": "text",
+        "visible": false,
+        "width": "120px",
+        "html": true
+      },
+      {
+        "data": "creator",
+        "title": "User",
+        "search": "text",
+        "width": "120px"
+      },
+      {
+        "data": "trigger",
+        "title": "Trigger",
+        "search": "text",
+        "visible": false,
+        "width": "100px"
+      },
+      {
+        "data": "status",
+        "title": "Status",
+        "search": "text",
+        "width": "100px"
+      },
+      {
+        "data": "progress",
+        "title": "Progress",
+        "width": "150px",
+        "orderable": false
+      },
+      {
+        "data": "services",
+        "title": "Services",
+        "width": "100px",
+        "visible": false,
+        "html": true
+      },
+      {
+        "data": "devices",
+        "title": "Devices",
+        "width": "100px",
+        "visible": false,
+        "html": true
+      },
+      {
+        "data": "pools",
+        "title": "Pools",
+        "width": "100px",
+        "visible": false,
+        "html": true
+      },
+      {
+        "data": "buttons",
+        "width": "90px",
+        "orderable": false,
+        "export": false
+      }
+    ],
+    "result": [
+      {
+        "data": "runtime",
+        "title": "Runtime",
+        "search": "text"
+      },
+      {
+        "data": "workflow_name",
+        "title": "Workflow",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "labels",
+        "title": "Labels",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "duration",
+        "title": "Duration",
+        "search": "text"
+      },
+      {
+        "data": "creator",
+        "title": "User",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "device_name",
+        "title": "Device",
+        "search": "text",
+        "orderable": false
+      },
+      {
+        "data": "parent_device_name",
+        "title": "Parent Device",
+        "search": "text",
+        "orderable": false
+      },
+      {
+        "data": "success",
+        "title": "Status",
+        "search": "bool",
+        "search_labels": { "true": "Success", "false": "Failure" },
+        "width": "80px",
+        "orderable": false,
+        "html": true
+      },
+      {
+        "data": "buttons",
+        "orderable": false,
+        "export": false
+      },
+      {
+        "data": "v1",
+        "title": "V1",
+        "orderable": false,
+        "html": true
+      },
+      {
+        "data": "v2",
+        "title": "V2",
+        "orderable": false,
+        "html": true
+      }
+    ],
+    "device_result": [
+      {
+        "data": "runtime",
+        "title": "Runtime",
+        "search": "text"
+      },
+      {
+        "data": "labels",
+        "title": "Labels",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "duration",
+        "title": "Duration",
+        "search": "text"
+      },
+      {
+        "data": "user",
+        "title": "User",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "parent_device_name",
+        "title": "Parent Device",
+        "search": "text",
+        "orderable": false,
+        "visible": false
+      },
+      {
+        "data": "service_name",
+        "title": "Service",
+        "search": "text",
+        "orderable": false
+      },
+      {
+        "data": "success",
+        "title": "Status",
+        "search": "bool",
+        "width": "80px",
+        "orderable": false,
+        "html": true
+      },
+      {
+        "data": "buttons",
+        "orderable": false,
+        "export": false
+      },
+      {
+        "data": "v1",
+        "title": "V1",
+        "orderable": false,
+        "html": true
+      },
+      {
+        "data": "v2",
+        "title": "V2",
+        "orderable": false,
+        "html": true
+      }
+    ],
+    "group": [
+      {
+        "data": "name",
+        "title": "Name",
+        "search": "text",
+        "width": "150px"
+      },
+      {
+        "data": "creator",
+        "title": "Creator",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "admin_only",
+        "title": "Admin Only",
+        "search": "bool",
+        "visible": false
+      },
+      {
+        "data": "description",
+        "title": "Description",
+        "width": "400px",
+        "search": "text"
+      },
+      {
+        "data": "users",
+        "title": "Users",
+        "width": "80px",
+        "html": true
+      },
+      {
+        "data": "buttons",
+        "width": "70px",
+        "orderable": false,
+        "export": false
+      }
+    ],
+    "task": [
+      {
+        "data": "name",
+        "title": "Name",
+        "search": "text"
+      },
+      {
+        "data": "description",
+        "title": "Description",
+        "search": "text"
+      },
+      {
+        "data": "creator",
+        "title": "Creator",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "last_scheduled_by",
+        "title": "Last scheduled by",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "service_name",
+        "title": "Service",
+        "search": "text",
+        "orderable": false
+      },
+      {
+        "data": "status",
+        "title": "Status",
+        "search": "text",
+        "width": "100px"
+      },
+      {
+        "data": "scheduling_mode",
+        "title": "Scheduling",
+        "search": "text",
+        "width": "100px",
+        "visible": false
+      },
+      {
+        "data": "periodicity",
+        "title": "Periodicity",
+        "width": "100px",
+        "orderable": false
+      },
+      {
+        "data": "next_run_time",
+        "title": "Next run time",
+        "width": "150px",
+        "orderable": false
+      },
+      {
+        "data": "time_before_next_run",
+        "title": "Time left",
+        "width": "150px",
+        "orderable": false
+      },
+      {
+        "data": "admin_only",
+        "title": "Admin Only",
+        "search": "bool",
+        "visible": false
+      },
+      {
+        "data": "devices",
+        "title": "Devices",
+        "width": "100px",
+        "visible": false,
+        "html": true
+      },
+      {
+        "data": "pools",
+        "title": "Pools",
+        "width": "100px",
+        "visible": false,
+        "html": true
+      },
+      {
+        "data": "buttons",
+        "width": "200px",
+        "orderable": false,
+        "export": false
+      }
+    ],
+    "user": [
+      {
+        "data": "name",
+        "title": "Username",
+        "search": "text",
+        "width": "150px"
+      },
+      {
+        "data": "creator",
+        "title": "Creator",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "description",
+        "title": "Description",
+        "width": "400px",
+        "search": "text"
+      },
+      {
+        "data": "email",
+        "title": "Email Address",
+        "search": "text"
+      },
+      {
+        "data": "last_login",
+        "title": "Last Login",
+        "width": "150px",
+        "search": "text"
+      },
+      {
+        "data": "groups",
+        "title": "Groups",
+        "width": "80px",
+        "html": true
+      },
+      {
+        "data": "buttons",
+        "width": "130px",
+        "orderable": false,
+        "export": false
+      }
+    ],
+    "server": [
+      {
+        "data": "name",
+        "title": "Name",
+        "search": "text"
+      },
+      {
+        "data": "creator",
+        "title": "Creator",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "description",
+        "title": "Description",
+        "search": "text"
+      },
+      {
+        "data": "role",
+        "title": "Role",
+        "search": "text"
+      },
+      {
+        "data": "mac_address",
+        "title": "MAC address",
+        "search": "text"
+      },
+      {
+        "data": "ip_address",
+        "title": "IP address",
+        "search": "text"
+      },
+      {
+        "data": "scheduler_address",
+        "title": "Scheduler Address",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "scheduler_active",
+        "title": "Scheduler Active",
+        "search": "bool",
+        "visible": false
+      },
+      {
+        "data": "location",
+        "title": "Location",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "version",
+        "title": "Version",
+        "search": "text"
+      },
+      {
+        "data": "commit_sha",
+        "title": "Commit SHA",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "last_restart",
+        "title": "Last Restart",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "weight",
+        "title": "Weight",
+        "search": "text"
+      },
+      {
+        "data": "status",
+        "title": "Status",
+        "search": "text"
+      },
+      {
+        "data": "current_runs",
+        "title": "Current Runs",
+        "search": "text",
+        "width": "140px"
+      },
+      {
+        "data": "workers",
+        "title": "Workers",
+        "width": "80px",
+        "html": true
+      },
+      {
+        "data": "runs",
+        "title": "Runs",
+        "width": "80px",
+        "html": true
+      },
+      {
+        "data": "buttons",
+        "width": "130px",
+        "orderable": false,
+        "export": false
+      }
+    ],
+    "credential": [
+      {
+        "data": "name",
+        "title": "Name",
+        "search": "text"
+      },
+      {
+        "data": "creator",
+        "title": "Creator",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "admin_only",
+        "title": "Admin Only",
+        "search": "bool",
+        "visible": false
+      },
+      {
+        "data": "last_modified",
+        "title": "Last Modified",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "last_modified_by",
+        "title": "Last Modified By",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "subtype",
+        "title": "Type",
+        "search": "text"
+      },
+      {
+        "data": "description",
+        "title": "Description",
+        "search": "text",
+        "orderable": false
+      },
+      {
+        "data": "username",
+        "title": "Username",
+        "search": "text"
+      },
+      {
+        "data": "priority",
+        "title": "Priority",
+        "search": "text"
+      },
+      {
+        "data": "buttons",
+        "width": "130px",
+        "orderable": false,
+        "export": false
+      }
+    ],
+    "changelog": [
+      {
+        "data": "time",
+        "title": "Time",
+        "search": "text",
+        "width": "200px"
+      },
+      {
+        "data": "user",
+        "title": "User",
+        "search": "text",
+        "width": "100px",
+        "orderable": false
+      },
+      {
+        "data": "severity",
+        "title": "Severity",
+        "search": "text",
+        "width": "80px",
+        "orderable": false
+      },
+      {
+        "data": "content",
+        "title": "Content",
+        "search": "text",
+        "className": "dt-body-left",
+        "orderable": false
+      }
+    ],
+    "file": [
+      {
+        "data": "filename",
+        "title": "Filename",
+        "search": "text",
+        "className": "dt-body-left",
+        "html": true
+      },
+      {
+        "data": "name",
+        "title": "Name",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "path",
+        "title": "Path",
+        "search": "text"
+      },
+      {
+        "data": "last_modified",
+        "title": "Last Modified",
+        "search": "text",
+        "visible": false
+      },
+      {
+        "data": "last_updated",
+        "title": "Last Updated",
+        "search": "text"
+      },
+      {
+        "data": "status",
+        "title": "Status",
+        "search": "text"
+      },
+      {
+        "data": "buttons",
+        "width": "200px",
+        "orderable": false,
+        "export": false
+      }
+    ],
+    "session": [
+      {
+        "data": "timestamp",
+        "title": "Timestamp",
+        "search": "text",
+        "width": "200px"
+      },
+      {
+        "data": "device_name",
+        "title": "Device",
+        "search": "text",
+        "width": "150px",
+        "orderable": false
+      },
+      {
+        "data": "user",
+        "title": "User",
+        "search": "text",
+        "width": "100px",
+        "orderable": false
+      },
+      {
+        "data": "name",
+        "title": "Session UUID",
+        "search": "text",
+        "width": "300px",
+        "orderable": false
+      },
+      {
+        "data": "buttons",
+        "width": "40px",
+        "orderable": false,
+        "export": false
+      }
+    ],
+    "worker": [
+      {
+        "data": "name",
+        "title": "Process ID",
+        "search": "text"
+      },
+      {
+        "data": "description",
+        "title": "Description",
+        "search": "text"
+      },
+      {
+        "data": "subtype",
+        "title": "Type",
+        "search": "text",
+        "width": "100px"
+      },
+      {
+        "data": "last_update",
+        "title": "Last Update",
+        "search": "text",
+        "width": "200px"
+      },
+      {
+        "data": "server_link",
+        "title": "Server",
+        "search": "text",
+        "width": "120px"
+      },
+      {
+        "data": "current_runs",
+        "title": "Current Runs",
+        "search": "text",
+        "width": "140px"
+      },
+      {
+        "data": "runs",
+        "title": "Runs",
+        "width": "80px",
+        "html": true
+      },
+      {
+        "data": "buttons",
+        "width": "80px",
+        "orderable": false,
+        "export": false
+      }
+    ]
+  },
+  "property_list": {
+    "device": {
+      "model": {
+        "choices": [["Arista", "Arista"], ["Cisco", "Cisco"], ["Linux", "Linux"], ["Juniper", "Juniper"]],
+        "validate_choice": false
+      },
+      "operating_system": {
+        "choices": [["IOS", "IOS"], ["IOS-XE", "IOS-XE"], ["IOS-XR", "IOS-XR"], ["Junos", "Junos"], ["EOS", "EOS"], ["Linux", "Linux"]],
+        "validate_choice": false
+      },
+      "vendor": {
+        "choices": [["Arista", "Arista"], ["Cisco", "Cisco"], ["Juniper", "Juniper"], ["Linux", "Linux"]],
+        "validate_choice": false
+      }
+    },
+    "link": {
+      "model": {
+        "choices": [["10G", "10G"], ["40G", "40G"], ["100G", "100G"], ["400G", "400G"]],
+        "validate_choice": false
+      },
+      "vendor": {
+        "choices": [["Ciena", "Ciena"], ["Cisco", "Cisco"]],
+        "validate_choice": false
+      }
+    },
+    "network": {
+      "category": {
+        "choices": [["Display", "Display"], ["Editing", "Editing"], ["Other", "Other"], ["Subnetwork", "Subnetwork"]],
+        "validate_choice": false,
+        "default": "Other"
+      }
+    },
+    "service": {
+      "operating_system": {
+        "choices": [["IOS", "IOS"], ["IOS-XE", "IOS-XE"], ["IOS-XR", "IOS-XR"], ["Junos", "Junos"], ["EOS", "EOS"], ["Linux", "Linux"]],
+        "validate_choice": false
+      },
+      "vendor": {
+        "choices": [["Arista", "Arista"], ["Cisco", "Cisco"], ["Juniper", "Juniper"], ["Linux", "Linux"]],
+        "validate_choice": false
+      }
+    },
+    "workflow": {
+      "category": {
+        "choices": [["Basics", "Basics"], ["Global Variables", "Global Variables"], ["Iteration Mechanism", "Iteration Mechanism"], ["Notification Mechanism", "Notification Mechanism"], ["Other", "Other"], ["Parameterized Form", "Parameterized Form"], ["Payload", "Payload"], ["RBAC", "RBAC"], ["REST API", "REST API"], ["Reports", "Reports"], ["Run Methods", "Run Methods"], ["SSH Connection", "SSH Connection"], ["Scalability", "Scalability"], ["Services", "Services"], ["Skip Mechanism", "Skip Mechanism"], ["Superworkflows", "Superworkflows"]],
+        "validate_choice": false,
+        "default": "Other"
+      }
+    }
+  },
+  "tables_additional": {
+    "pool": ["device_number", "link_number"],
+    "run": ["path", "server_properties", "service_properties", "worker_properties"],
+    "service": ["path", "scoped_name", "mandatory_parametrization"],
+    "network": ["path", "scoped_name"],
+    "result": ["service_name"],
+    "task": ["frequency", "frequency_unit", "crontab_expression", "is_active"],
+    "worker": ["server_properties"]
+  },
+  "filtering": {
+    "changelog": ["time", "user", "severity", "content"],
+    "credential": [
+      "name",
+      "subtype",
+      "description",
+      "admin_only",
+      "username",
+      "priority"
+    ],
+    "device": [
+      "name",
+      "description",
+      "creator",
+      "subtype",
+      "model",
+      "location",
+      "vendor",
+      "icon",
+      "operating_system",
+      "os_version",
+      "netmiko_driver",
+      "napalm_driver",
+      "scrapli_driver",
+      "netconf_driver",
+      "ip_address",
+      "port",
+      "latitude",
+      "longitude",
+      "property1"
+    ],
+    "group": ["name", "description", "creator", "admin_only", "email"],
+    "link": [
+      "name",
+      "description",
+      "creator",
+      "subtype",
+      "model",
+      "location",
+      "vendor",
+      "color",
+      "source_name",
+      "destination_name"
+    ],
+    "pool": [
+      "name",
+      "last_modified",
+      "creator",
+      "description",
+      "manually_defined",
+      "admin_only"
+    ],
+    "run": [
+      "runtime",
+      "labels",
+      "duration",
+      "service_name",
+      "server",
+      "creator",
+      "trigger",
+      "status"
+    ],
+    "server": ["name", "description", "ip_address", "version", "commit", "weight", "status"],
+    "network": ["name", "description", "creator", "location"],
+    "service": [
+      "name",
+      "type",
+      "description",
+      "creator",
+      "vendor",
+      "operating_system",
+      "send_notification"
+    ],
+    "session": ["timestamp", "device_name", "user", "name"],
+    "result": ["runtime", "duration", "device_name", "parent_device_name", "success"],
+    "task": [
+      "name",
+      "description",
+      "creator",
+      "scheduling_mode",
+      "admin_only",
+      "last_scheduled_by",
+      "service_name",
+      "status"
+    ],
+    "user": ["name", "description", "groups", "email"]
+  }
+}

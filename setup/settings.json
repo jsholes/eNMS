@@ -1,6 +1,6 @@
 {
   "app": {
-    "config_mode": "debug",
+    "config_mode": "production",
     "documentation_url": "https://enms.readthedocs.io/en/latest/",
     "git_repository": "git@github.com:jsholes/eNMS.git",
     "max_content_length": 104857600,

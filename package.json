@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/afourmy/eNMS"
+    "url": "git@github.com:jsholes/eNMS.git"
   },
   "keywords": [
     "node"

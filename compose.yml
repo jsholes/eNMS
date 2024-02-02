@@ -1,13 +1,16 @@
 services:
   enms:
-    build: ./app
+    image: jeremiahsholes502/enms-python-gunicorn:0.0.2.RELEASE
     container_name: enms
     restart: always
     environment:
       - APP_NAME=enms
-      - DATABASE_URL=postgres://enms:enms@enmsdb:5432/enmsdb
+      - DATABASE_URL=postgresql://enms:enms@enmsdb:5432/enmsdb
     expose:
     - 5000
+    depends_on:
+      - db
+
   # nginx:
   #   build: ./nginx
   #   container_name: nginx
@@ -16,7 +19,7 @@ services:
   #   - "80:80"
   #Database
   db:
-    image: postgres
+    image: postgres:latest
     restart: always
     ports:
       - 5432:5432

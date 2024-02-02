@@ -1,22 +1,24 @@
 services:
   enms:
-    image: jeremiahsholes502/enms-python-gunicorn:0.0.2.RELEASE
-    container_name: enms
     restart: always
     environment:
-      - APP_NAME=enms
       - DATABASE_URL=postgresql://enms:enms@enmsdb:5432/enmsdb
+      - SECRET_KEY=docker
+      - CONFIG_MODE=production
+      - VAULT_ADDR=http://enmsvault:8200
+      - USE_VAULT=1
+    build:
+      context: .
+      dockerfile: build/docker/Dockerfile
+    networks:
+    - db_network
+    - web_network
     expose:
     - 5000
     depends_on:
       - db
+      - vault
 
-  # nginx:
-  #   build: ./nginx
-  #   container_name: nginx
-  #   restart: always
-  #   ports:
-  #   - "80:80"
   #Database
   db:
     image: postgres:latest
@@ -24,6 +26,8 @@ services:
     ports:
       - 5432:5432
     hostname: enmsdb
+    networks:
+      - db_network
     container_name: enmsdb
     environment:
       - POSTGRES_USER=enms
@@ -31,6 +35,42 @@ services:
       - POSTGRES_DB=enmsdb
     volumes:
       - postgres_data:/var/lib/postgresql/data
+
+  vault:
+    image: hashicorp/vault
+    hostname: enmsvault
+    container_name: enmsvault
+    networks:
+      - web_network
+    volumes: 
+      - ./resources/vault:/vault/config
+      - ./vault/policies:/vault/policies
+      - ./vault/data:/vault/data
+      - ./vault/logs:/vault/logs
+    environment:
+      - VAULT_TOKEN=02630000-0409-0201-2080-060070400301
+    cap_add:
+        #capacity to container add
+        - IPC_LOCK
+
+  proxy:
+    image: nginx:latest
+    container_name: prod_nginx
+    volumes:
+     - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+     - ./certs:/etc/ssl
+    ports:
+     - "80:80"
+    depends_on:
+     - enms
+    networks: 
+     - web_network
+
+networks:
+  db_network:
+    driver: bridge
+  web_network:
+     driver: bridge
 
 volumes:
   postgres_data:
@@ -98,3 +138,48 @@ volumes:
 #   backend:
 #     driver: bridge
           
+# services:
+#   db:
+#     restart: always
+#     image: postgres:latest
+#     environment:
+#      - POSTGRES_USER=enms
+#      - POSTGRES_PASSWORD=enms
+#      - POSTGRES_DB=enms
+#     expose:
+#       - 5432
+#     networks:
+#       - db_network
+#   enms:
+#     restart: always
+#     environment:
+#      - DATABASE_URL=postgresql://enms:enms@db:5432/enms
+#      - SECRET_KEY=docker
+#      - CONFIG_MODE=Production
+#      - USE_VAULT=0
+#     build:
+#       context: ../
+#       dockerfile: docker/Dockerfile
+#     ports:
+#       - "5000:5000"
+#     networks:
+#       - db_network
+#       - web_network
+#     depends_on:
+#       - db
+#   nginx:
+#     restart: always
+#     image: nginx:latest
+#     ports:
+#       - "80:80"
+#     volumes:
+#       - ./nginx:/etc/nginx/conf.d
+#     networks:
+#       - web_network
+#     depends_on:
+#       - enms
+# networks:
+#   db_network:
+#     driver: bridge
+#   web_network:
+#     driver: bridge
